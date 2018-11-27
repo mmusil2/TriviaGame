@@ -1,10 +1,10 @@
 var trivia = [
     q1 = {
         q: "What is the race of the creature from the Predator films?",
-        opt1: "Blah",
-        opt2: "Bleh",
+        opt1: "Sangheili",
+        opt2: "Huragok",
         opt3: "Yautja",
-        opt4: "Not this",
+        opt4: "Kig-Yar",
         correct: 3,
         correctans: "Yautja",
         img: "predator.jpg"
@@ -29,7 +29,76 @@ var trivia = [
         correctans: "Do Androids Dream of Electric Sheep",
         img: "bladerunner.jpg"
     }
-
+    q4 = {
+        q: "What's the name of the ship in the 1979 film 'Alien?'",
+        opt1: "Sulaco",
+        opt2: "Ganymede",
+        opt3: "Spacefleet",
+        opt4: "Nostromos",
+        correct: 4,
+        correctans: "Nostromos",
+        img: 
+    }
+    q5 = {
+        q: "Kurt Russell plays what iconic character in the 1981 classic 'Escape from New York'?",
+        opt1: "Snake Plissken",
+        opt2: "John Matrix",
+        opt3: "Ash",
+        opt4: "Solid Snake",
+        correct: 1,
+        correctans: "Snake Plissken",
+        img: 
+    }
+    q6 = {
+        q: "In 'The Terminator,' which character does the T-800 travel back in time to terminate?",
+        opt1: "Kyle Reese",
+        opt2: "John Connor",
+        opt3: "Sarah Connor",
+        opt4: "Ellen Ripley",
+        correct: 3,
+        correctans: "Sarah Connor",
+        img: 
+    }
+    q7 = {
+        q: "What year does Marty McFly travel back to in the film 'Back to the Future'?",
+        opt1: "1959",
+        opt2: "1955",
+        opt3: "1951",
+        opt4: "1961",
+        correct: 2,
+        correctans: "1955",
+        img: 
+    }
+    q8 = {
+        q: ,
+        opt1: ,
+        opt2: ,
+        opt3: ,
+        opt4: ,
+        correct: ,
+        correctans: ,
+        img: 
+    }
+    q9 = {
+        q: ,
+        opt1: ,
+        opt2: ,
+        opt3: ,
+        opt4: ,
+        correct: ,
+        correctans: ,
+        img: 
+    }
+    q10 = {
+        q: ,
+        opt1: ,
+        opt2: ,
+        opt3: ,
+        opt4: ,
+        correct: ,
+        correctans: ,
+        img: 
+    }
 ];
 
 var correctanswer;
@@ -69,9 +138,9 @@ function endPage() {
     clear();
     var startover = $('<button id="startover">START OVER?</button>');
     $("#question").text("All done. Here is how you did!");
-    $("#option1").text("Correct Answers: " + correct);
-    $("#option2").text("Incorrect Answers: :" + incorrect);
-    $("#option3").text("Unanswered: " + unanswered);
+    $("#buttons").append("Correct Answers: " + correct + "<br>");
+    $("#buttons").append("Incorrect Answers: :" + incorrect + "<br>");
+    $("#buttons").append("Unanswered: " + unanswered + "<br>");
     $("#option4").empty();
     $("#buttons").append(startover);
     $("#startover").on("click", function() {
@@ -119,7 +188,7 @@ function loseScreen(object) {
     clear();
     // $("#question").text("You Lose!");
     timer.stop();
-    newimg = $("<img>");
+    newimg = $("<img width='750px'>");
     newimg.attr("src", "assets/images/" + object.img);
     $("#question").text("The Correct Answer was: " + object.correctans);
     $("#option1").empty();
@@ -134,7 +203,7 @@ function loseScreen(object) {
 function winScreen(object) {
     clear();
     timer.stop();
-    newimg = $("<img width='500'>");
+    newimg = $("<img width='750px'>");
     newimg.attr("src", "assets/images/" + object.img);
     $("#option1").empty();
     $("#option2").empty();

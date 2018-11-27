@@ -1,8 +1,5 @@
 @import url(https://fonts.googleapis.com/css?family=VT323);
 
-@console-color: #14fdce;
-@console-bg: #031e11;
-
 body {
     padding: 15px;
     /* font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif */
@@ -28,14 +25,20 @@ body {
     font-size: 50px
 }
 
-#question {
+#question, #message {
     background-color: black;
 }
 
 .choice {
+    font-size: 55px;
     width: 70%;
+}
+
+#choices {
+    padding-top: 100px;
 }
 
 .choice:hover {
     background-color: darkgray;
+    cursor: pointer;
 }
