@@ -15,33 +15,52 @@
 </head>
 
 <body>
-  <div class="row">
-    <div id="timeremaining"></div>
-  </div>
-
-  <div class="row">
-    <div id="question"></div>
-  </div>
-
-  <div class="container" id="choices">
-    <div class="row">
-      <div class="choice" id="option1" opt=1></div>
-    </div>
-
-    <div class="row">
-      <div class="choice" id="option2" opt=2></div>
-    </div>
-
-    <div class="row">
-      <div class="choice" id="option3" opt=3></div>
-    </div>
-    
-    <div class="row">
-      <div class="choice" id="option4" opt=4></div>
+  <div class="container">
+    <div class="row justify-content-center">
+      <img src="assets/images/logo.png" height="180px">
     </div>
   </div>
 
-  <div class="container" id="buttons"></div>
+  <div class="container" id="gamearea">
+
+    <div class="row justify-content-center">
+      <div id="timeremaining"></div>
+    </div>
+
+    <div class="row justify-content-center">
+      <div id="message"></div>
+    </div>
+
+    <div class="row justify-content-center">
+      <div id="question"></div>
+    </div>
+    <br>
+
+    <div class="container" id="choices">
+      <div class="row justify-content-center">
+        <div class="choice" id="option1" opt=1></div>
+      </div>
+
+      <div class="row justify-content-center">
+        <div class="choice" id="option2" opt=2></div>
+      </div>
+
+      <div class="row justify-content-center">
+        <div class="choice" id="option3" opt=3></div>
+      </div>
+      
+      <div class="row justify-content-center">
+        <div class="choice" id="option4" opt=4></div>
+      </div>
+
+      <div class="row justify-content-center">
+        <div id="answerimg"></div>
+      </div>
+    </div>
+
+    <div class="container" id="buttons"></div>
+
+  </div>
 
   <script type="text/javascript" src="assets/javascript/app.js"></script>
 

@@ -20,7 +20,7 @@ var trivia = [
         img: "thing.jpg"
     },
     q3 = {
-        q: "What story is the movie 'Blade Runner' based on?",
+        q: "What short story is the movie 'Blade Runner' based on?",
         opt1: "The Nine Billion Names of God",
         opt2: "The Razor's Edge",
         opt3: "Metropolis",
@@ -43,7 +43,7 @@ var unanswered = 0;
 var timer = {
     time: 5,
     start: function() {
-        $("#timeremaining").html(timer.time);
+        $("#timeremaining").html("Time Remaining: " + timer.time);
         myInterval = setInterval(timer.count, 1000);
     },
     stop: function() {
@@ -51,12 +51,22 @@ var timer = {
     },
     count: function() {
         timer.time--;
-        $("#timeremaining").html(timer.time);
+        $("#timeremaining").html("Time Remaining: " + timer.time);
         console.log(timer.time);
     }
 }
 
+function clear() {
+    $("#question").empty();
+    $("#option1").empty();
+    $("#option2").empty();
+    $("#option3").empty();
+    $("#option4").empty();
+    $("#answerimg").empty();
+}
+
 function endPage() {
+    clear();
     var startover = $('<button id="startover">START OVER?</button>');
     $("#question").text("All done. Here is how you did!");
     $("#option1").text("Correct Answers: " + correct);
@@ -88,6 +98,8 @@ function startPage() {
 }
 
 function makePage(object) {
+    $("#message").empty();
+    clear();
     if (q == trivia.length) {
         endPage();
     } else {
@@ -104,33 +116,38 @@ function makePage(object) {
 }
 
 function loseScreen(object) {
+    clear();
     // $("#question").text("You Lose!");
     timer.stop();
     newimg = $("<img>");
     newimg.attr("src", "assets/images/" + object.img);
-    $("#option1").text("The Correct Answer was: " + object.correctans);
-    $("#option2").html(newimg);
+    $("#question").text("The Correct Answer was: " + object.correctans);
+    $("#option1").empty();
+    $("#option2").empty();
     $("#option3").empty();
     $("#option4").empty();
+    $("#answerimg").html(newimg);
     q++;
     setTimeout(function() {makePage(trivia[q]);}, 5000);
 }
 
 function winScreen(object) {
+    clear();
     timer.stop();
     newimg = $("<img width='500'>");
     newimg.attr("src", "assets/images/" + object.img);
-    $("#option1").html(newimg);
+    $("#option1").empty();
     $("#option2").empty();
     $("#option3").empty();
     $("#option4").empty();
+    $("#answerimg").html(newimg);
     q++;
     setTimeout(function() {makePage(trivia[q]);}, 5000);
 }
 
 function timeOut() {
     timeup = setTimeout(function() {
-        $("#question").text("Time's Up!");
+        $("#message").text("Time's Up!");
         unanswered++;
         loseScreen(trivia[q]);
     }, 5000);
@@ -143,13 +160,13 @@ $(".choice").on("click", function() {
     if ($(this).attr("opt") == correctanswer) {
         // go to correct answer page
         clearTimeout(timeup);
-        $("#question").text("Correct!");
+        $("#message").text("Correct!");
         correct++;
         winScreen(trivia[q]);        
     } else {
         // go to incorrect answer
         clearTimeout(timeup);
-        $("#question").text("Nope!");
+        $("#message").text("Nope!");
         incorrect++;
         loseScreen(trivia[q]);
     }

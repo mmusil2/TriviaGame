@@ -1,4 +1,41 @@
+@import url(https://fonts.googleapis.com/css?family=VT323);
+
+@console-color: #14fdce;
+@console-bg: #031e11;
+
 body {
     padding: 15px;
     /* font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif */
+    background-image: url("../images/background.jpg");
+    background-size: 100%;
+    color: #14fd4e;
+    font-family: 'VT323';
+    font-size: 40px;
+    -webkit-font-smoothing: none;
+    line-height: 1.2;
+}
+
+#gamearea {
+    text-align: center;
+}
+
+#start {
+    color: #14fd4e;
+    background-color: darkgray;
+    padding: 3px 50px;
+    position: relative;
+    top: 200px;
+    font-size: 50px
+}
+
+#question {
+    background-color: black;
+}
+
+.choice {
+    width: 70%;
+}
+
+.choice:hover {
+    background-color: darkgray;
 }
