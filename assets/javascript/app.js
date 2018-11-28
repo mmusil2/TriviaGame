@@ -20,7 +20,7 @@ var trivia = [
         img: "thing.jpg"
     },
     q3 = {
-        q: "What short story is the movie 'Blade Runner' based on?",
+        q: "What novel by Philip K. Dick is the movie 'Blade Runner' based on?",
         opt1: "The Nine Billion Names of God",
         opt2: "The Razor's Edge",
         opt3: "Metropolis",
@@ -28,7 +28,7 @@ var trivia = [
         correct: 4,
         correctans: "Do Androids Dream of Electric Sheep",
         img: "bladerunner.jpg"
-    }
+    },
     q4 = {
         q: "What's the name of the ship in the 1979 film 'Alien?'",
         opt1: "Sulaco",
@@ -37,8 +37,8 @@ var trivia = [
         opt4: "Nostromos",
         correct: 4,
         correctans: "Nostromos",
-        img: 
-    }
+        img: "alien.jpg"
+    },
     q5 = {
         q: "Kurt Russell plays what iconic character in the 1981 classic 'Escape from New York'?",
         opt1: "Snake Plissken",
@@ -47,8 +47,8 @@ var trivia = [
         opt4: "Solid Snake",
         correct: 1,
         correctans: "Snake Plissken",
-        img: 
-    }
+        img: "escape.jpg"
+    },
     q6 = {
         q: "In 'The Terminator,' which character does the T-800 travel back in time to terminate?",
         opt1: "Kyle Reese",
@@ -57,8 +57,8 @@ var trivia = [
         opt4: "Ellen Ripley",
         correct: 3,
         correctans: "Sarah Connor",
-        img: 
-    }
+        img: "terminator.jpg"
+    },
     q7 = {
         q: "What year does Marty McFly travel back to in the film 'Back to the Future'?",
         opt1: "1959",
@@ -67,37 +67,37 @@ var trivia = [
         opt4: "1961",
         correct: 2,
         correctans: "1955",
-        img: 
-    }
+        img: "bttf.jpg"
+    },
     q8 = {
-        q: ,
-        opt1: ,
-        opt2: ,
-        opt3: ,
-        opt4: ,
-        correct: ,
-        correctans: ,
-        img: 
-    }
+        q: "What is the name of the leader on Mars in 'Total Recall' from 1990?",
+        opt1: "Cohen",
+        opt2: "Conrad",
+        opt3: "Cohaagen",
+        opt4: "Copenhaagen",
+        correct: 3,
+        correctans: "Cohaagen",
+        img: "total.jpg"
+    },
     q9 = {
-        q: ,
-        opt1: ,
-        opt2: ,
-        opt3: ,
-        opt4: ,
-        correct: ,
-        correctans: ,
-        img: 
-    }
+        q: "What city is the film 'RoboCop' set it?",
+        opt1: "Los Angeles",
+        opt2: "Detroit",
+        opt3: "Baltimore",
+        opt4: "Chicago",
+        correct: 2,
+        correctans: "Detroit",
+        img: "robocop.jpg"
+    },
     q10 = {
-        q: ,
-        opt1: ,
-        opt2: ,
-        opt3: ,
-        opt4: ,
-        correct: ,
-        correctans: ,
-        img: 
+        q: "In 'Star Wars: The Empire Strikes Back,' what planet does Luke visit to find Jedi Master Yoda?",
+        opt1: "Endor",
+        opt2: "Yavin 4",
+        opt3: "Hoth",
+        opt4: "Dagobah",
+        correct: 4,
+        correctans: "Dagobah",
+        img: "starwars.jpg"
     }
 ];
 
@@ -110,7 +110,7 @@ var incorrect = 0;
 var unanswered = 0;
 
 var timer = {
-    time: 5,
+    time: 30,
     start: function() {
         $("#timeremaining").html("Time Remaining: " + timer.time);
         myInterval = setInterval(timer.count, 1000);
@@ -137,7 +137,7 @@ function clear() {
 function endPage() {
     clear();
     var startover = $('<button id="startover">START OVER?</button>');
-    $("#question").text("All done. Here is how you did!");
+    $("#question").text("All done. Here's how you did!");
     $("#buttons").append("Correct Answers: " + correct + "<br>");
     $("#buttons").append("Incorrect Answers: :" + incorrect + "<br>");
     $("#buttons").append("Unanswered: " + unanswered + "<br>");
@@ -148,18 +148,14 @@ function endPage() {
         correct = 0;
         incorrect = 0;
         unanswered = 0;
-        $("#startover").detach();
+        $("#buttons").empty();
         makePage(trivia[q]);
     });
 }
 
 function startPage() {
     var start = $('<button id="start">START</button>');
-    // $("#question").empty();
     $("#buttons").append(start);
-    // $("#option2").empty();
-    // $("#option3").empty();
-    // $("#option4").empty();
     $("#start").on("click", function() {
         $("#start").detach();
         makePage(trivia[q])
@@ -172,7 +168,7 @@ function makePage(object) {
     if (q == trivia.length) {
         endPage();
     } else {
-        timer.time = 5;
+        timer.time = 30;
         timer.start();
         timeOut();
         $("#question").text(object.q);
@@ -186,15 +182,10 @@ function makePage(object) {
 
 function loseScreen(object) {
     clear();
-    // $("#question").text("You Lose!");
     timer.stop();
     newimg = $("<img width='750px'>");
     newimg.attr("src", "assets/images/" + object.img);
     $("#question").text("The Correct Answer was: " + object.correctans);
-    $("#option1").empty();
-    $("#option2").empty();
-    $("#option3").empty();
-    $("#option4").empty();
     $("#answerimg").html(newimg);
     q++;
     setTimeout(function() {makePage(trivia[q]);}, 5000);
@@ -205,10 +196,6 @@ function winScreen(object) {
     timer.stop();
     newimg = $("<img width='750px'>");
     newimg.attr("src", "assets/images/" + object.img);
-    $("#option1").empty();
-    $("#option2").empty();
-    $("#option3").empty();
-    $("#option4").empty();
     $("#answerimg").html(newimg);
     q++;
     setTimeout(function() {makePage(trivia[q]);}, 5000);
@@ -219,10 +206,10 @@ function timeOut() {
         $("#message").text("Time's Up!");
         unanswered++;
         loseScreen(trivia[q]);
-    }, 5000);
+    }, 30000);
 }
 
-// makePage(trivia[q]);
+// starts the game
 startPage();
 
 $(".choice").on("click", function() {
@@ -240,11 +227,3 @@ $(".choice").on("click", function() {
         loseScreen(trivia[q]);
     }
 });
-
-// setTimeout(function() {
-//     $("#question").text("You Lose!");
-//     loseScreen(trivia[q]);
-// }, 5000);
-
-console.log(timer.time);
-
